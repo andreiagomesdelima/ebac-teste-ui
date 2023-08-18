@@ -25,7 +25,7 @@ context('Funcionalidade Login', () => {
         cy.get('#customer_login > div:nth-child(1) > form > input.button').click()
 
     });
-    it.only('Deve fazer login com sucesso - Usando fixture', () => {
+    it('Deve fazer login com sucesso - Usando fixture', () => {
         cy.fixture('perfil').then(dados => {
             cy.get('[id="username"]').type(dados.usuario)
             cy.get('[id="password"]').type(dados.senha,{log: false})
@@ -33,7 +33,6 @@ context('Funcionalidade Login', () => {
 
         })
     });
-
     it('deve exibir uma mensagem de erro ao inserir usuario inválido', () => {
         cy.get('[id="username"]').type('ebac@teste.com')
         cy.get('[id="password"]').type('teste@teste.com')
@@ -42,9 +41,7 @@ context('Funcionalidade Login', () => {
         cy.get('.woocommerce-error').should('contain', 'Erro: a senha fornecida para o e-mail ebac@teste.com está incorreta. Perdeu a senha?')
 
     })
-
-    it
-        ('deve exibir uma mensagem de erro ao inserir senha inválida', () => {
+    it('deve exibir uma mensagem de erro ao inserir senha inválida', () => {
             cy.get('[id="username"]').type('aluno_ebac@teste.com')
             cy.get('[id="password"]').type('teste@teste')
             cy.get('#customer_login > div:nth-child(1) > form > input.button').click()

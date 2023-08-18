@@ -15,8 +15,9 @@ describe('Funcionalidade Página de produtos', () => {
             .click()
             
     });
-    it.only('Deve adicionar um produto no carrinho', () => {
+    it('Deve adicionar um produto no carrinho', () => {
         var quantidade = 3
+        
         cy.get('[class="product-block grid"]')
             .contains('Abominable Hoodie').click()
         cy.get('.button-variable-item-S').click()
@@ -28,6 +29,13 @@ describe('Funcionalidade Página de produtos', () => {
         cy.get('[class="woocommerce-message"]').should('contain', quantidade  + ' × “Abominable Hoodie” foram adicionados no seu carrinho.')
 
     });
+    it('Deve adicionar produtos ao carrinho - Usando comando customizado', () => {
+        cy.addProduto('Abominable Hoodie', 'S','Red', 3)
+        
+    })
+    it('Deve adicionar produtos ao carrinho - Usando comando customizado', () => {
+        cy.addProduto('Atlas Fitness Tank', 'M','Blue', 2)
 
-
+    })
+       
 });
