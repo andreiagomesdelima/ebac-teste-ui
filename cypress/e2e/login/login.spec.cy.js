@@ -1,5 +1,5 @@
 /// <reference types="cypress" />
-import { usuario, senha } from '../fixtures/perfil.json';
+import { usuario, senha } from '../../fixtures/perfil.json';
 
 
 context('Funcionalidade Login', () => {
@@ -11,14 +11,14 @@ context('Funcionalidade Login', () => {
         cy.screenshot()
     })
 
-    it('Deve fazer login com sucesso', () => {
-        cy.get('[id="username"]').type("aluno_ebac@teste.com")
-        cy.get('[id="password"]').type('teste@teste.com')
-        cy.get('#customer_login > div:nth-child(1) > form > input.button').click()
-
-        cy.get('#main > header > h1').should('contain', 'Minha conta')
+    it.only('Deve fazer login com sucesso', () => {
+        cy.preencherCampo('[id="username"]',"aluno_ebac@teste.com")
+        cy.preencherCampo('[id="password"]','teste@teste.com')
+        cy.clicar('#customer_login > div:nth-child(1) > form > input.button')
+        cy.validarTexto('#main > header > h1', 'Minha conta')
 
     })
+    
     it('Deve fazer login com sucesso - Usando arquivos de dados', () => {
         cy.get('[id="username"]').type(usuario)
         cy.get('[id="password"]').type(senha)
